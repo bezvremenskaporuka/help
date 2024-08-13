@@ -68,17 +68,15 @@
             if(username === 'Lana' && password === 'Gardaland') {
                 alert("Prolaz dozvoljen, lozinka ispravna!");
                 // Preusmjeravanje na drugu stranicu
-                window.location.href = 'warnings.html';
+                window.location.assign('warnings.html');
             } else {
                 alert("Djevojke koncentracija molim! Pokušaja imate beskonačno mnogo, ali vremena ne.");
                 // Ostajanje na istoj stranici
+                console.log("Pogrešni podaci uneseni: " + username + " / " + password);
             }
         });
 
-        window.onbeforeunload = function() {
-            // Blokira ponovno učitavanje stranice
-            return "You cannot refresh the page.";
-        };
+        window.onbeforeunload = null; // Onemogućava blokiranje ponovnog učitavanja
     </script>
 </body>
 </html>
