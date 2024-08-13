@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warnings for you</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            background: url('background.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #00FF00;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            padding: 20px;
+        }
+        #message-container {
+            max-width: 800px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .typing {
+            border-right: .1em solid #00FF00;
+            white-space: pre-wrap;
+            overflow: hidden;
+            width: 100%;
+            animation: typing 10s steps(100, end), caret 1s steps(1) infinite;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes caret {
+            50% { border-color: transparent; }
+        }
+        #continue-btn {
+            display: none;
+            margin-top: 20px;
+            background-color: black;
+            border: 1px solid #00FF00;
+            color: #00FF00;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="message-container">
+        <p id="message" class="typing">
+            Pozdrav djevojke! Ovaj trenutak koji sada proživljavate nije samo prolazna točka u vremenu, već nosi u sebi sve aspekte vaših života – budućnost, prošlost i sadašnjost. Ovo je vrijeme kada se svaki vaš izbor pretvara u trajni pečat na vašem putu, oblikujući vas i svijet oko vas na način koji se ne može vratiti unazad. Nijedan odabir, ma koliko malen ili nevažan izgledao, nije lišen posljedica i ne može se izmijeniti kada je jednom napravljen.
+
+            Vi ste krojači svoje sudbine, a vaši izbori određuju na kojoj strani civilizacije ćete stati. Hoćete li ostati na strani koja podržava napredak, pravdu i zajedništvo, ili ćete se naći na putu ka destrukciji i kaosu? Taj izbor ovisi samo o vama i zato budite dovoljno mudre i usredsređene da birate ono što je ispravno, čak i kada je to najteže. Jer, na kraju, vaši odabiri postaju vaša i naša priča, a ta priča odjekuje kroz vrijeme, oblikujući ne samo vaš svijet, već i svijet budućih generacija.
+
+            Kao što vidite, moja poruka je stigla do vas. No, kako bismo osigurali da je sve jasno i kako bismo uklonili svaku sumnju koja bi mogla obuzeti vaše misli, morat ćete riješiti sljedeći test istine. Taj test neće samo potvrditi da ste vas dvije zapravo ono što tvrdite da jeste, već će poslužiti i kao dokaz snage našeg prijateljstva, te dokazati koliko me zapravo dobro poznajete i jesmo li mi zaista pravi prijatelji. Vjerujem da veza koja nas povezuje nije obična; ona je protkana povjerenjem, razumijevanjem i zajedničkim ciljevima. Samo ako uspijete dokazati tu nevidljivu, ali moćnu vezu, moći ćete steći pristup informacijama koje vam mogu pokazati put i osloboditi vas iz mreže koju su neprijatelji pažljivo ispleli.
+
+            Imate točno pet minuta da odgovorite na 15 pitanja. Ovo vrijeme nije slučajno odabrano. Ono je momenat koji balansira između svjetla i tame, između iluzije i istine. Svaki odabir koji napravite neće vas samo voditi naprijed, već će vas povući dublje u stvarnost koju su drugi pokušali sakriti. Imajte na umu da će svaki korak testirati vašu snagu volje i vašu spremnost da se suočite s onim što leži iza vela privida. Zapamtite, za proći ispit treba vam 12 ili više točnih odgovora. 
+
+            U ovoj zoni, granice koje inače oblikuju vašu percepciju počinju se topiti, a ono što je do sada bilo skriveno, izlazi na vidjelo. Vaši najdublji strahovi i snovi, koji su možda do sada bili potisnuti ili ignorirani, postat će opipljivi i stvarni. U tom trenutku, istina će se ukazati u svom punom sjaju – ali samo ako ste spremne suočiti se sa sobom i svijetom kakav zaista jeste, a ne kakav biste željele da bude.
+
+            Vrijeme je da ispitamo snagu vašeg uma, čistoću vaših namjera, i dubinu našeg zajedništva. Jeste li spremne da zaronite u samu srž postojanja, gdje se laž i istina bore za prevlast, i da otkrijete pravu prirodu onoga što se skriva iza kulisa ovog svijeta? Izbor je vaš, ali imajte na umu – svaki korak vodi vas bliže istini koja je skrivena, ali neizbježna.
+        </p>
+        <button id="continue-btn" onclick="window.location.href='quiz.html'">NASTAVI</button>
+    </div>
+
+    <script>
+        // Nakon što poruka završi s prikazivanjem, prikazujemo dugme "NASTAVI"
+        const message = document.getElementById('message');
+        const continueBtn = document.getElementById('continue-btn');
+
+        message.addEventListener('animationend', function() {
+            continueBtn.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
+

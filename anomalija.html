@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezultat</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('background.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #00FF00;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            padding: 20px;
+        }
+        #message-container {
+            max-width: 800px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .typing {
+            white-space: pre-wrap;
+            border-right: 2px solid #00FF00;
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <div id="message-container">
+        <p>Odluka je zaključana...</p>
+        <p id="typing-effect" class="typing"></p>
+    </div>
+
+    <script>
+        // Tekst koji će se prikazati s typewriting efektom
+        const message = "Rezultat je podbacio i posljedice su pogubne. Anomalija je detektirana. Nažalost, došlo je do neočekivanog poremećaja u našoj komunikaciji.\n\n" +
+            "Ova nepravilnost je ozbiljnije prirode i zahtijeva trenutni prekid daljnjeg prijenosa informacija. U ovom trenutku, s velikom žalošću moramo obustaviti sve daljnje kontakte kako bismo osigurali sigurnost svih uključenih.\n\n" +
+            "Naši putevi se sada razdvajaju, a svaki daljnji korak koji poduzmete bit će izvan naše sfere utjecaja. Zbog ove nenadane situacije, prisiljeni smo vam reći zbogom i poželjeti vam sretno dalje. Neka vam budući koraci budu mudri i oprezni, jer od ovog trenutka, sve odgovornosti prelaze isključivo na vas.\n\n" +
+            "Čuvajte se i neka vas vodi dobra sreća. Doviđenja.";
+
+        const typingElement = document.getElementById('typing-effect');
+        let index = 0;
+        const speed = 50; // Brzina prikazivanja slova u milisekundama
+
+        // Funkcija koja simulira efekt tipkanja
+        function typeWriter() {
+            if (index < message.length) {
+                typingElement.textContent += message.charAt(index);
+                index++;
+                setTimeout(typeWriter, speed);
+            } else {
+                typingElement.style.borderRight = 'none'; // Ukloni blinking cursor na kraju
+            }
+        }
+
+        // Pokreni efekat tipkanja nakon kašnjenja od 3 sekunde
+        setTimeout(typeWriter, 3000);
+    </script>
+</body>
+</html>

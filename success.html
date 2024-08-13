@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('background.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #00FF00;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            padding: 20px;
+        }
+        #message-container {
+            max-width: 800px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .typing {
+            white-space: pre-wrap;
+            border-right: 2px solid #00FF00;
+            display: inline;
+        }
+        #continue-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: #00FF00;
+            background-color: transparent;
+            border: 2px solid #00FF00;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            display: none; /* Gumb je skriven dok se tekst ne ispiše */
+        }
+        #continue-button:hover {
+            background-color: #00FF00;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div id="message-container">
+        <p>Put je odabran...</p>
+        <p id="typing-effect" class="typing"></p>
+        <button id="continue-button" onclick="location.href='story.html'">Nastavi</button>
+    </div>
+
+    <script>
+        // Tekst koji će se prikazati s typewriting efektom
+        const message = "Rezultat je prolazan, kao i sve što nas okružuje.\n\n" + 
+            " Sve je pod kontrolom. Naša komunikacija teče glatko, bez ikakvih zastoja ili smetnji. Svaka poruka prolazi besprijekorno, što jasno pokazuje da smo potpuno sinkronizirani i spremni za nastavak. Naš kontakt ostaje čvrst i neprekinut, bez ijedne prepreke na putu. Ništa nas ne može omesti u našoj misiji, koja se približava završetku. Sve prepreke savladavamo zajedno, korak po korak, s nepokolebljivim povjerenjem u ono što radimo.\n\n" +
+            "Dobrodošle ponovo! Nadam se da ste se probudile iz fantazije u koju su vas neprijatelji uvjerili. Ovo je znak da smo u potpunosti usklađeni, da naša povezanost ostaje neupitna i da možemo nastaviti našu razmjenu informacija bez ikakvih ometanja. Naša posljednja misija se nastavlja s jasnim ciljem na vidiku. Budućnost je svijetla i vodi nas kroz svaki korak, hrabro i odlučno, prema onome što dolazi. Nastavljamo zajedno, vođeni našim zajedničkim ciljevima, i ništa nas neće zaustaviti na putu prema uspjehu. Ostao je još jedan korak koji nas sve zajedno vraća u normalu, ali prije nego što vam dam zadatak, ispričat ću vam priču kako smo do svega došli. Nadam se da ste spremne jer je priča poprilično duga, ali obećavam da će biti uzbudljiva.";
+
+        const typingElement = document.getElementById('typing-effect');
+        const continueButton = document.getElementById('continue-button');
+        let index = 0;
+        const initialSpeed = 50; // Brzina prikazivanja za "Put je odabran..."
+        const fastSpeed = 20; // Brža brzina za ostatak teksta
+
+        // Funkcija koja simulira efekt tipkanja
+        function typeWriter() {
+            let speed = initialSpeed;
+
+            if (typingElement.textContent.endsWith("Put je odabran...")) {
+                speed = fastSpeed; // Povećaj brzinu nakon "Put je odabran..."
+            }
+
+            if (index < message.length) {
+                typingElement.textContent += message.charAt(index);
+                index++;
+                setTimeout(typeWriter, speed);
+            } else {
+                typingElement.style.borderRight = 'none'; // Ukloni blinking cursor na kraju
+                continueButton.style.display = 'inline-block'; // Prikazuj gumb nakon završetka
+            }
+        }
+
+        // Pokreni efekat tipkanja nakon kašnjenja od 3 sekunde
+        setTimeout(typeWriter, 3000);
+    </script>
+</body>
+</html>

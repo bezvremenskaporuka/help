@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kviz prijateljstva</title>
+    <style>
+        body {
+            background-image: url('background.png');
+            background-size: cover;
+            font-family: 'Courier New', Courier, monospace;
+            color: #00FF00;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        .timer {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .question input[type="radio"] {
+            margin: 0 10px;
+        }
+
+        .submit-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background: #00FF00;
+            color: #000;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .submit-btn:hover {
+            background: #00cc00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Kviz prijateljstva</h1>
+        <div id="timer" class="timer">Preostalo vrijeme: 5:00</div>
+        <form id="quiz-form">
+            <!-- Vaša pitanja -->
+            <div class="question">
+                1. Volim li više kišno vrijeme nego sunčano?
+                <label><input type="radio" name="q1" value="DA"> DA</label>
+                <label><input type="radio" name="q1" value="NE"> NE</label>
+            </div>
+            <div class="question">
+                2. U mom privatnom telefonskom imeniku su sve osobe osim mojih roditelja spremljene imenom i prezimenom, a ne nadimkom?
+                <label><input type="radio" name="q2" value="DA"> DA</label>
+                <label><input type="radio" name="q2" value="NE"> NE</label>
+            </div>
+            <div class="question">
+                3. Jesam li ikada bio u Španjolskoj?
+                <label><input type="radio" name="q3" value="DA" required> DA</label>
+                <label><input type="radio" name="q3" value="NE"> NE</label>
+            </div>
+            <div class="question">
+                4. Imam li braću ili sestre?
+                <label><input type="radio" name="q4" value="DA" required> DA</label>
+                <label><input type="radio" name="q4" value="NE"> NE</label>
+            </div>
+            <div class="question">
+                5. Moja najdraža rekreativno sportska aktivnost je skijanje?
+                <label><input type="radio" name="q5" value="DA" required> DA</label>
+                <label><input type="radio" name="q5" value="NE"> NE</label>
+            </div>
+            <div class="question">
+                6. Pišem li desnom rukom?
+                <label><input type="radio" name="q6" value="DA" required> DA</label>
+                <label><input type="radio" name="q6" value="NE"> NE</label>
+            </div>
+            <div class="question">
+                7. Ime sam dobio po moreplovcu Marco Polu?
+                <label><input type="radio" name="q7" value="DA" required> DA</label>
+                <label><input type="radio" name="q7" value="NE"> NE</label>
+            </div>
+            <div class="question">
+                8. Imam li zelene oči?
+                <label><input type="radio" name="q8" value="DA" required> DA</label>
+                <label><input type="radio" name="q8" value="NE"> NE</label>
+            </div>
+            <div class="question">
+                9. Jesam li kao dijete pohađao glazbenu školu?
+                <label><input type="radio" name="q9" value="DA" required> DA</label>
+                <label><input type="radio" name="q9" value="NE"> NE</label>
+            </div>
+            <div class="question">
+                10. Moja najdraže jelo su lazanje?
+                <label><input type="radio" name="q10" value="DA" required> DA</label>
+                <label><input type="radio" name="q10" value="NE"> NE</label>
+            </div>
+            <div class="question">
+                11. Jesam li kao dijete trenirao atletiku?
+                <label><input type="radio" name="q11" value="DA" required> DA</label>
+                <label><input type="radio" name="q11" value="NE"> NE</label>
+            </div>
+            <div class="question">
+                12. Moja najdraža boja je bijela?
+                <label><input type="radio" name="q12" value="DA" required> DA</label>
+                <label><input type="radio" name="q12" value="NE"> NE</label>
+            </div>
+            <div class="question">
+                13. Najdraži žanr filmova mi je triler?
+                <label><input type="radio" name="q13" value="DA" required> DA</label>
+                <label><input type="radio" name="q13" value="NE"> NE</label>
+            </div>
+            <div class="question">
+                14. Imam li tetovažu?
+                <label><input type="radio" name="q14" value="DA" required> DA</label>
+                <label><input type="radio" name="q14" value="NE"> NE</label>
+            </div>
+            <div class="question">
+                15. Volim li više pse nego mačke?
+                <label><input type="radio" name="q15" value="DA"> DA</label>
+                <label><input type="radio" name="q15" value="NE"> NE</label>
+            </div>
+             <button type="button" class="submit-btn" onclick="submitQuiz()">Pošalji odgovore</button>
+        </form>
+    </div>
+    <script>
+        // Provjera je li kviz već završen
+        if (localStorage.getItem('quizCompleted') === 'true') {
+            window.location.href = "kviz_već_popunjen.html"; // Preusmjeri ako je kviz već popunjen
+        }
+
+        // Postavi početno vrijeme na 5 minuta (300 sekundi)
+        let timeLeft = localStorage.getItem('timeLeft') ? parseInt(localStorage.getItem('timeLeft')) : 300;
+        const timerElement = document.getElementById("timer");
+
+        const countdown = setInterval(() => {
+            const minutes = Math.floor(timeLeft / 60);
+            let seconds = timeLeft % 60;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            timerElement.textContent = `Preostalo vrijeme: ${minutes}:${seconds}`;
+            timeLeft--;
+
+            // Spremite preostalo vrijeme u localStorage
+            localStorage.setItem('timeLeft', timeLeft);
+
+            if (timeLeft < 0) {
+                clearInterval(countdown);
+                localStorage.removeItem('timeLeft'); // Ukloni spremljeno vrijeme nakon isteka
+                submitQuiz(true);
+            }
+        }, 1000);
+
+        // Funkcija za provjeru odgovora i preusmjeravanje
+        function submitQuiz(timeUp = false) {
+            const correctAnswers = {
+                q1: "DA", q2: "DA", q3: "NE", q4: "NE", q5: "DA",
+                q6: "DA", q7: "NE", q8: "NE", q9: "DA", q10: "DA",
+                q11: "DA", q12: "DA", q13: "DA", q14: "NE", q15: "NE"
+            };
+            let score = 0;
+
+            for (let i = 1; i <= 15; i++) {
+                const question = document.querySelector(`input[name="q${i}"]:checked`);
+                if (question && question.value === correctAnswers[`q${i}`]) {
+                    score++;
+                }
+            }
+
+            // Spremi informaciju da je kviz završen
+            localStorage.setItem('quizCompleted', 'true');
+
+            if (timeUp || score < 12) {
+                window.location.href = "anomalija.html"; // Neuspješan ispit
+            } else {
+                window.location.href = "success.html"; // Uspješan ispit
+            }
+
+            // Ukloni spremljeno vrijeme nakon završetka kviza
+            localStorage.removeItem('timeLeft');
+        }
+
+        // Onemogući osvježavanje stranice pomoću tipke F5 ili Ctrl+R
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "F5" || (event.ctrlKey && event.key === "r")) {
+                event.preventDefault();
+            }
+        });
+
+        // Onemogući povratak na prethodnu stranicu
+        history.pushState(null, null, window.location.href);
+        window.addEventListener('popstate', function () {
+            history.pushState(null, null, window.location.href);
+        });
+    </script>
+</body>
+</html>
